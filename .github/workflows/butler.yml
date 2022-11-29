@@ -1,0 +1,12 @@
+name: Upload to Itch
+on:
+  pull_request:
+    branches: ["main"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+      - run: unzip butler.zip
+      - run: chmod +x butler
+      - run: ./butler -V
