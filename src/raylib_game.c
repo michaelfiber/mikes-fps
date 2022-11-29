@@ -87,7 +87,7 @@ int main(void)
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(UpdateDrawFrame, 60, 1);
 #else
-    SetTargetFPS(60);       // Set our game to run at 60 frames-per-second
+    SetTargetFPS(0);       // Set our game to run at 0 so it uses requestAnimationFrame in WASM.
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -300,9 +300,7 @@ static void UpdateDrawFrame(void)
         // Draw full screen rectangle in front of everything
         if (onTransition) DrawTransition();
 
-        //DrawFPS(10, 10);
-
-		DrawText(TextFormat("Beta %f\nGamma %f", beta, gamma), 20, 20, 20, BLACK);
+        DrawFPS(10, 10);
 
     EndDrawing();
     //----------------------------------------------------------------------------------
